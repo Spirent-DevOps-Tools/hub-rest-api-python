@@ -93,7 +93,8 @@ else:
     logging.info(f"Found {num_versions} which is greater or equal to maximum allowed: {args.max_versions}")
     logging.info(f"Have to delete {num_versions_to_delete} project version(s)")
     sorted_version_list = sorted(versions['items'], key=lambda s: arrow.get(s['createdAt']))
-    logging.info("List of versions in chronological order")
+    sorted_version_list.reverse()
+    logging.info("List of versions in reverse chronological order")
     for version in sorted_version_list:
         logging.info (f"Version {version['versionName']}  created at  {version['createdAt']}")
     versions_to_delete = sorted_version_list[-num_versions_to_delete:]
